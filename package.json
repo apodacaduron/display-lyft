@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.27.1",
+    "@mantine/core": "^7.2.2",
+    "@mantine/form": "^7.2.2",
+    "@mantine/hooks": "^7.2.2",
     "@prisma/client": "^5.1.1",
     "@t3-oss/env-nextjs": "^0.7.0",
     "@tanstack/react-query": "^4.32.6",
@@ -35,6 +38,9 @@
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.47.0",
     "eslint-config-next": "^14.0.0",
+    "postcss": "^8.4.31",
+    "postcss-preset-mantine": "^1.11.0",
+    "postcss-simple-vars": "^7.0.1",
     "prisma": "^5.1.1",
     "typescript": "^5.1.6"
   },

@@ -1,11 +1,61 @@
-import { SignInButton } from "@clerk/nextjs";
-import { AppShell, Button, Container, Group, rem, Text } from "@mantine/core";
+import {
+  RedirectToCreateOrganization,
+  SignInButton,
+  SignUpButton,
+  useAuth,
+  useOrganization,
+  useClerk,
+} from "@clerk/nextjs";
+import {
+  AppShell,
+  Button,
+  Container,
+  Group,
+  Loader,
+  rem,
+  Text,
+} from "@mantine/core";
 import { useHeadroom } from "@mantine/hooks";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { HeroSection } from "~/features/home";
 
-export default function Home() {
+export default function HomePage() {
+  const router = useRouter();
+  const clerk = useClerk();
+  const auth = useAuth();
+  const organization = useOrganization();
   const pinned = useHeadroom({ fixedAt: 120 });
+
+  useEffect(() => {
+    if (!auth.isLoaded || !organization.isLoaded) return;
+    if (!auth.isSignedIn) return;
+    if (organization.organization) {
+      return router.push(`/workspaces/${organization.organization.id}`);
+    }
+    return clerk.redirectToCreateOrganization();
+  }, [auth.isLoaded, organization.isLoaded]);
+
+  function renderAuthActions() {
+    if (!auth.isLoaded || !organization.isLoaded) {
+      return <Loader color="blue" />;
+    }
+    if (auth.isSignedIn && organization.organization) {
+      return <Button>Dashboard</Button>;
+    }
+    if (auth.isSignedIn && !organization.organization) {
+      return <Button>Create workspace</Button>;
+    }
+    return (
+      <>
+        <Button component={SignInButton} variant="default">
+          Sign in
+        </Button>
+        <Button component={SignUpButton}>Sign up</Button>
+      </>
+    );
+  }
 
   return (
     <>
@@ -30,12 +80,7 @@ export default function Home() {
                 <Text fw="bold" size="xl" style={{ userSelect: "none" }}>
                   DisplayLyft
                 </Text>
-                <Group>
-                  <Button component={SignInButton} variant="default">
-                    Sign in
-                  </Button>
-                  <Button component={SignInButton}>Sign up</Button>
-                </Group>
+                <Group>{renderAuthActions()}</Group>
               </Group>
             </Container>
           </AppShell.Header>

@@ -1,4 +1,4 @@
-import { SignInButton } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
 import {
   Text,
   Title,
@@ -25,7 +25,7 @@ export default function HeroSection() {
           displaying content effortlessly across multiple screens. Say goodbye
           to outdated USB drives and hello to a seamless web-based solution.
         </Text>
-        <Button size="lg" component={SignInButton}>
+        <Button size="lg" component={SignUpButton}>
           Get Started Free
         </Button>
         <Image

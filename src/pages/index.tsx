@@ -1,5 +1,4 @@
 import {
-  RedirectToCreateOrganization,
   SignInButton,
   SignUpButton,
   useAuth,
@@ -31,11 +30,18 @@ export default function HomePage() {
   useEffect(() => {
     if (!auth.isLoaded || !organization.isLoaded) return;
     if (!auth.isSignedIn) return;
-    if (organization.organization) {
+    if (organization.organization?.id) {
       return router.push(`/workspaces/${organization.organization.id}`);
     }
     return clerk.redirectToCreateOrganization();
-  }, [auth.isLoaded, organization.isLoaded]);
+  }, [
+    auth.isLoaded,
+    organization.isLoaded,
+    auth.isSignedIn,
+    organization.organization?.id,
+    clerk,
+    router,
+  ]);
 
   function renderAuthActions() {
     if (!auth.isLoaded || !organization.isLoaded) {

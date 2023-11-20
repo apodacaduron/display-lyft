@@ -1,13 +1,5 @@
 import { SignUpButton } from "@clerk/nextjs";
-import {
-  Text,
-  Title,
-  Image,
-  Center,
-  Stack,
-  Container,
-  Button,
-} from "@mantine/core";
+import { Text, Title, Image, Stack, Container, Button } from "@mantine/core";
 import NextImage from "next/image";
 
 export default function HeroSection() {

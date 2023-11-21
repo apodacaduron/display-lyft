@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useRouter as useNavigationRouter } from "next/navigation";
 import { useEffect } from "react";
+import { ROUTES } from "~/features/data/routes";
 
 export default function WorkspacePage() {
   const route = useRouter();
@@ -9,7 +10,7 @@ export default function WorkspacePage() {
 
   useEffect(() => {
     if (!workspaceId || typeof workspaceId !== "string") return;
-    router.push(`/workspaces/${workspaceId}/dashboard`);
+    router.push(ROUTES.DASHBOARD.path(workspaceId));
   }, [workspaceId, router]);
 
   return <></>;

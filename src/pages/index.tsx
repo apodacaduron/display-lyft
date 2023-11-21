@@ -18,6 +18,7 @@ import { useHeadroom } from "@mantine/hooks";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { ROUTES } from "~/features/data/routes";
 import { HeroSection } from "~/features/home";
 
 export default function HomePage() {
@@ -31,7 +32,7 @@ export default function HomePage() {
     if (!auth.isLoaded || !organization.isLoaded) return;
     if (!auth.isSignedIn) return;
     if (organization.organization?.id) {
-      return router.push(`/workspaces/${organization.organization.id}`);
+      return router.push(ROUTES.WORKSPACE.path(organization.organization.id));
     }
     return clerk.redirectToCreateOrganization();
   }, [

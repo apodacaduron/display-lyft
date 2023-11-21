@@ -3,7 +3,7 @@ import { AppShell, Group, NavLink, ScrollArea, Text } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { ReactNode } from "react";
-import { ROUTES } from "~/features/data/routes";
+import { SIDEBAR_ROUTES } from "~/features/data/routes";
 
 type Props = {
   children: ReactNode;
@@ -31,7 +31,7 @@ export default function ShellLayout(props: Props) {
           <OrganizationSwitcher hidePersonal />
         </AppShell.Section>
         <AppShell.Section grow my="md" component={ScrollArea}>
-          {Object.values(ROUTES).map((navLink, index) => (
+          {Object.values(SIDEBAR_ROUTES).map((navLink, index) => (
             <NavLink
               key={index}
               label={navLink.label}

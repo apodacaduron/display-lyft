@@ -29,3 +29,8 @@ export const ROUTES = {
     icon: IconArchive,
   },
 };
+
+export const SIDEBAR_ROUTES = {
+  DASHBOARD: ROUTES.DASHBOARD,
+  LIBRARY: ROUTES.LIBRARY,
+};

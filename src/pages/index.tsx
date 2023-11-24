@@ -19,7 +19,7 @@ import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { ROUTES } from "~/features/data/routes";
-import { HeroSection } from "~/features/home";
+import { FooterSection, HeroSection } from "~/features/home";
 
 export default function HomePage() {
   const router = useRouter();
@@ -79,6 +79,7 @@ export default function HomePage() {
       <main>
         <AppShell
           header={{ height: 60, collapsed: !pinned, offset: false }}
+          footer={{ height: 60 }}
           padding="md"
         >
           <AppShell.Header>
@@ -95,6 +96,10 @@ export default function HomePage() {
           <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
             <HeroSection />
           </AppShell.Main>
+
+          <AppShell.Footer pos="initial">
+            <FooterSection />
+          </AppShell.Footer>
         </AppShell>
       </main>
     </>

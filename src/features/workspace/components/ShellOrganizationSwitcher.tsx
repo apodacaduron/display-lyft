@@ -49,7 +49,7 @@ export default function ShellOrganizationSwitcher() {
           />
         </Menu.Target>
 
-        <Menu.Dropdown styles={{ dropdown: { borderRadius: "12px" } }} p="6px">
+        <Menu.Dropdown styles={{ dropdown: { borderRadius: "16px" } }} p="8px">
           <Menu.Label>Organizations</Menu.Label>
           {organizationList.userMemberships.data?.map((userMembership) => (
             <NavLink
@@ -73,7 +73,7 @@ export default function ShellOrganizationSwitcher() {
                   fontWeight: 500,
                 },
                 root: {
-                  borderRadius: "6px",
+                  borderRadius: "8px",
                 },
               }}
               active={
@@ -91,7 +91,7 @@ export default function ShellOrganizationSwitcher() {
             onClick={() => clerk.openOrganizationProfile()}
             styles={{
               itemLabel: { fontSize: "16px" },
-              item: { borderRadius: "6px" },
+              item: { borderRadius: "8px" },
             }}
           >
             Manage active organization
@@ -99,7 +99,10 @@ export default function ShellOrganizationSwitcher() {
           <Menu.Item
             leftSection={<IconLogout size="1.8rem" stroke="1.5" />}
             onClick={() => clerk.openCreateOrganization()}
-            styles={{ itemLabel: { fontSize: "16px" } }}
+            styles={{
+              itemLabel: { fontSize: "16px" },
+              item: { borderRadius: "8px" },
+            }}
           >
             Create organization
           </Menu.Item>

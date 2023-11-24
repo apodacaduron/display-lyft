@@ -8,9 +8,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { MantineProvider, createTheme } from "@mantine/core";
 import type { NextPage } from "next";
 import type { Session } from "@clerk/nextjs/server";
+import { DM_Sans } from "next/font/google";
+import { dark } from "@clerk/themes";
 
+const dmSans = DM_Sans({ subsets: ["latin"] });
 const theme = createTheme({
-  /** Put your mantine theme override here */
+  fontFamily: "inherit",
 });
 
 type NextPageWithLayout = NextPage & {
@@ -29,11 +32,20 @@ function MyApp({
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <MantineProvider theme={theme}>
-      <ClerkProvider {...pageProps}>
-        {getLayout(<Component {...pageProps} />)}
-      </ClerkProvider>
-    </MantineProvider>
+    <div className={dmSans.className}>
+      <MantineProvider theme={theme}>
+        <ClerkProvider
+          appearance={{
+            baseTheme: dark,
+            signIn: { baseTheme: dark },
+            signUp: { baseTheme: dark },
+          }}
+          {...pageProps}
+        >
+          {getLayout(<Component {...pageProps} />)}
+        </ClerkProvider>
+      </MantineProvider>
+    </div>
   );
 }
 

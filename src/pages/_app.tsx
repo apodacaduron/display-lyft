@@ -33,7 +33,7 @@ function MyApp({
 
   return (
     <div className={dmSans.className}>
-      <MantineProvider theme={theme}>
+      <MantineProvider theme={theme} defaultColorScheme="dark">
         <ClerkProvider
           appearance={{
             baseTheme: dark,

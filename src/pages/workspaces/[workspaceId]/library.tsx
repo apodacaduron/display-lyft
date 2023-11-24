@@ -1,14 +1,19 @@
-import { SignOutButton } from "@clerk/nextjs";
-import { useRouter } from "next/router";
+import { Title, Text, Stack, Group, Button } from "@mantine/core";
+import { IconUpload } from "@tabler/icons-react";
 import { ShellLayout } from "~/features/workspace";
 
 function LibraryPage() {
-  const router = useRouter();
-  const { workspaceId } = router.query;
   return (
     <>
-      My library {workspaceId}
-      <SignOutButton />
+      <Group justify="space-between">
+        <Stack gap={0}>
+          <Title>Library</Title>
+          <Text>Upload images, videos and music for your ads</Text>
+        </Stack>
+        <Button leftSection={<IconUpload size="1.2rem" stroke="1.5" />}>
+          Upload
+        </Button>
+      </Group>
     </>
   );
 }

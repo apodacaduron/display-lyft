@@ -19,7 +19,14 @@ import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { ROUTES } from "~/features/data/routes";
-import { FooterSection, HeroSection } from "~/features/home";
+import {
+  ContactSection,
+  FAQSection,
+  FeaturesSection,
+  FooterSection,
+  HeroSection,
+  PricingSection,
+} from "~/features/home";
 
 export default function HomePage() {
   const router = useRouter();
@@ -95,6 +102,10 @@ export default function HomePage() {
 
           <AppShell.Main pt={`calc(${rem(60)} + var(--mantine-spacing-md))`}>
             <HeroSection />
+            <FeaturesSection />
+            <PricingSection />
+            <FAQSection />
+            <ContactSection />
           </AppShell.Main>
 
           <AppShell.Footer pos="initial">

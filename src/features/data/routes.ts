@@ -1,3 +1,4 @@
+import { IconLayoutDashboard } from "@tabler/icons-react";
 import { IconArchive, IconDashboard } from "@tabler/icons-react";
 
 export const ROUTES = {
@@ -17,7 +18,7 @@ export const ROUTES = {
       return `/workspaces/${workspaceId}/dashboard`;
     },
     label: "Dashboard",
-    icon: IconDashboard,
+    icon: IconLayoutDashboard,
   },
   LIBRARY: {
     pathname: "/workspaces/[workspaceId]/library",

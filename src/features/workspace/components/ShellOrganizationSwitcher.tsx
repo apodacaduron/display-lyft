@@ -1,5 +1,5 @@
 import { useClerk, useOrganization, useOrganizationList } from "@clerk/nextjs";
-import { Avatar, Menu, NavLink } from "@mantine/core";
+import { Avatar, Menu, NavLink, Skeleton } from "@mantine/core";
 import {
   IconCheck,
   IconChevronRight,
@@ -26,14 +26,23 @@ export default function ShellOrganizationSwitcher() {
     router.push(ROUTES.DASHBOARD.path(organizationId));
   }
 
+  function renderMemberCount(memberCount: number | undefined) {
+    if (!Boolean(memberCount)) return <Skeleton w={100} h={14} mt={4} />;
+    return `${memberCount} members`;
+  }
+
   return (
     <>
       <Menu shadow="lg" position="right" width={320}>
         <Menu.Target>
           <NavLink
             leftSection={<Avatar src={organization.organization?.imageUrl} />}
-            label={organization.organization?.name}
-            description={`${organization.organization?.membersCount} members`}
+            label={
+              organization.organization?.name ?? <Skeleton w={140} h={16} />
+            }
+            description={renderMemberCount(
+              organization.organization?.membersCount
+            )}
             rightSection={<IconChevronRight size="1rem" stroke="1.5" />}
             styles={{ label: { fontSize: "16px", fontWeight: 500 } }}
             p="lg"
@@ -49,7 +58,9 @@ export default function ShellOrganizationSwitcher() {
                 <Avatar src={userMembership.organization?.imageUrl} />
               }
               label={userMembership.organization?.name}
-              description={`${userMembership.organization?.membersCount} members`}
+              description={renderMemberCount(
+                userMembership.organization.membersCount
+              )}
               rightSection={
                 userMembership.organization.id ===
                   organization.organization?.id && (

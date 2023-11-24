@@ -1,5 +1,5 @@
 import { useAuth, useClerk, useUser } from "@clerk/nextjs";
-import { Avatar, Menu, NavLink } from "@mantine/core";
+import { Avatar, Menu, NavLink, Skeleton } from "@mantine/core";
 import {
   IconChevronRight,
   IconLogout,
@@ -17,7 +17,7 @@ export default function ShellUserButton() {
         <Menu.Target>
           <NavLink
             leftSection={<Avatar src={user.user?.imageUrl} />}
-            label={user.user?.fullName}
+            label={user.user?.fullName ?? <Skeleton w={140} h={16} />}
             rightSection={<IconChevronRight size="1rem" stroke="1.5" />}
             styles={{ label: { fontSize: "16px", fontWeight: 500 } }}
             p="lg"

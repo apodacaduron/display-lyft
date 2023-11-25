@@ -19,8 +19,8 @@ export default function ShellOrganizationSwitcher() {
     },
   });
 
-  function handleSelectOrganization(organizationId: string) {
-    organizationList.setActive?.({
+  async function handleSelectOrganization(organizationId: string) {
+    await organizationList.setActive?.({
       organization: organizationId,
     });
     router.push(ROUTES.DASHBOARD.path(organizationId));

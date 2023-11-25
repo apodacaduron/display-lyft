@@ -5,16 +5,14 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import "@mantine/core/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import { MantineProvider, createTheme } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import type { NextPage } from "next";
 import type { Session } from "@clerk/nextjs/server";
 import { DM_Sans } from "next/font/google";
 import { dark } from "@clerk/themes";
+import { mantineTheme } from "~/features/data/mantineTheme";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
-const theme = createTheme({
-  fontFamily: "inherit",
-});
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -33,7 +31,7 @@ function MyApp({
 
   return (
     <div className={dmSans.className}>
-      <MantineProvider theme={theme} defaultColorScheme="dark">
+      <MantineProvider theme={mantineTheme} defaultColorScheme="dark">
         <ClerkProvider
           appearance={{
             baseTheme: dark,

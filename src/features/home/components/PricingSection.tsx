@@ -92,8 +92,8 @@ export default function PricingSection() {
 
                     <Divider my="sm" />
 
-                    {membership.perks.map((perk) => (
-                      <Text>
+                    {membership.perks.map((perk, idx) => (
+                      <Text key={idx}>
                         {perk.icon} {perk.text}
                       </Text>
                     ))}

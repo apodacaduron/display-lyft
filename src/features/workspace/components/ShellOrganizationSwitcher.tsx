@@ -87,7 +87,9 @@ export default function ShellOrganizationSwitcher() {
           ))}
           <Menu.Label mt="md">Options</Menu.Label>
           <Menu.Item
-            leftSection={<IconSettings size="1.8rem" stroke="1.5" />}
+            leftSection={
+              <IconSettings size="1.8rem" stroke="1.5" color="gray" />
+            }
             onClick={() => clerk.openOrganizationProfile()}
             styles={{
               itemLabel: { fontSize: "16px" },
@@ -97,7 +99,7 @@ export default function ShellOrganizationSwitcher() {
             Manage active organization
           </Menu.Item>
           <Menu.Item
-            leftSection={<IconLogout size="1.8rem" stroke="1.5" />}
+            leftSection={<IconLogout size="1.8rem" stroke="1.5" color="gray" />}
             onClick={() => clerk.openCreateOrganization()}
             styles={{
               itemLabel: { fontSize: "16px" },

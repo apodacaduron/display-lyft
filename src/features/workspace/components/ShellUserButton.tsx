@@ -26,7 +26,9 @@ export default function ShellUserButton() {
 
         <Menu.Dropdown styles={{ dropdown: { borderRadius: "16px" } }} p="8px">
           <Menu.Item
-            leftSection={<IconSettings size="1.8rem" stroke="1.5" />}
+            leftSection={
+              <IconSettings size="1.8rem" stroke="1.5" color="gray" />
+            }
             onClick={() => clerk.openUserProfile()}
             styles={{
               itemLabel: { fontSize: "16px" },
@@ -36,7 +38,7 @@ export default function ShellUserButton() {
             Manage account
           </Menu.Item>
           <Menu.Item
-            leftSection={<IconLogout size="1.8rem" stroke="1.5" />}
+            leftSection={<IconLogout size="1.8rem" stroke="1.5" color="gray" />}
             onClick={() => auth.signOut()}
             styles={{
               itemLabel: { fontSize: "16px" },

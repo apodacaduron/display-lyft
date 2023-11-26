@@ -23,7 +23,15 @@ export default function ShellLayout(props: Props) {
             <NavLink
               key={index}
               label={navLink.label}
-              leftSection={<navLink.icon size="1.8rem" stroke="1.5" />}
+              leftSection={
+                <navLink.icon
+                  size="1.8rem"
+                  stroke="1.5"
+                  {...(route.pathname === navLink.pathname
+                    ? {}
+                    : { color: "gray" })}
+                />
+              }
               active={route.pathname === navLink.pathname}
               style={{ borderRadius: "8px" }}
               component={Link}

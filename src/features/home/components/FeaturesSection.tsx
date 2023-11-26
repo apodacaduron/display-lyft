@@ -5,7 +5,7 @@ import {
   Container,
   Avatar,
   Card,
-  Grid,
+  SimpleGrid,
 } from "@mantine/core";
 
 export default function FeaturesSection() {
@@ -13,22 +13,26 @@ export default function FeaturesSection() {
     {
       icon: "🖥️",
       title: "Dynamic Content Management",
-      description: "Nice feature description",
+      description:
+        "Effortlessly control content on various screens from a central hub. Customize displays globally or individually for a tailored viewer experience.",
     },
     {
       icon: "🔧",
       title: "Personalized Playback Configuration",
-      description: "Nice feature description",
+      description:
+        "Create unique playlists for each screen. Seamlessly switch between videos and images, ensuring a perfect showcase for your brand.",
     },
     {
       icon: "✌",
       title: "Intuitive User Interface",
-      description: "Nice feature description",
+      description:
+        "Navigate our platform easily. Our user-friendly interface simplifies content uploads, screen settings, and subscription management for effortless use.",
     },
     {
       icon: "☁️",
-      title: "Secure Hosting",
-      description: "Nice feature description",
+      title: "Secure and Reliable Hosting",
+      description:
+        "Rest easy knowing your content is safe. Our robust hosting ensures reliable playback and fortified security for all your valuable media.",
     },
   ];
 
@@ -37,28 +41,28 @@ export default function FeaturesSection() {
       <Container size="xl" my={100}>
         <Stack align="center">
           <Title order={2} size="2rem" ta="center">
-            Features
+            Innovative tools for seamless screen mastery
           </Title>
           <Text c="dimmed" maw={720} ta="center">
-            Welcome to DisplayLyft, your all-in-one platform for managing and
-            displaying content effortlessly across multiple screens.
+            Discover an arsenal of cutting-edge features engineered to simplify
+            and elevate your content display experience. Dive into a realm where
+            managing screens becomes an art form, effortlessly executed with
+            DisplayLyft&apos;s ingenious tools.
           </Text>
 
-          <Grid mt="lg">
+          <SimpleGrid mt="lg" cols={{ base: 1, lg: 2 }} spacing="xl">
             {features.map((feature, index) => (
-              <Grid.Col maw="25%" key={index}>
-                <Card p="xl" withBorder>
-                  <Card.Section mb="md">
-                    <Avatar size="lg">{feature.icon}</Avatar>
-                  </Card.Section>
-                  <Card.Section>
-                    <Title order={4}>{feature.title}</Title>
-                    <Text c="dimmed">{feature.description}</Text>
-                  </Card.Section>
-                </Card>
-              </Grid.Col>
+              <Card key={index} p="xl" withBorder>
+                <Card.Section mb="md">
+                  <Avatar size="lg">{feature.icon}</Avatar>
+                </Card.Section>
+                <Card.Section>
+                  <Title order={4}>{feature.title}</Title>
+                  <Text c="dimmed">{feature.description}</Text>
+                </Card.Section>
+              </Card>
             ))}
-          </Grid>
+          </SimpleGrid>
         </Stack>
       </Container>
     </section>

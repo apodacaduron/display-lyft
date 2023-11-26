@@ -3,10 +3,10 @@ import {
   Title,
   Stack,
   Container,
-  Grid,
   Card,
   Avatar,
   Divider,
+  SimpleGrid,
 } from "@mantine/core";
 
 export default function PricingSection() {
@@ -66,42 +66,41 @@ export default function PricingSection() {
       <Container size="xl" my={100}>
         <Stack align="center">
           <Title order={2} size="2rem" ta="center">
-            Pricing
+            Pricing plans
           </Title>
           <Text c="dimmed" maw={720} ta="center">
-            Welcome to DisplayLyft, your all-in-one platform for managing and
-            displaying content effortlessly across multiple screens.
+            Explore our flexible subscription options tailored to meet your
+            content management requirements. Find the ideal plan that suits your
+            business goals and allows seamless control over your displays.
           </Text>
 
-          <Grid mt="lg">
+          <SimpleGrid mt="lg" cols={{ base: 1, sm: 2, lg: 4 }} spacing="xl">
             {memberships.map((membership, index) => (
-              <Grid.Col maw="25%" key={index}>
-                <Card p="xl" withBorder>
-                  <Card.Section mb="md">
-                    <Avatar size="lg">{membership.icon}</Avatar>
-                  </Card.Section>
-                  <Card.Section>
-                    <Title order={4}>{membership.title}</Title>
-                    <Text c="dimmed">{membership.description}</Text>
-                    <Text>
-                      <Text span size="32px">
-                        ${membership.price}
-                      </Text>{" "}
-                      / per month
+              <Card key={index} p="xl" withBorder>
+                <Card.Section mb="md">
+                  <Avatar size="lg">{membership.icon}</Avatar>
+                </Card.Section>
+                <Card.Section>
+                  <Title order={4}>{membership.title}</Title>
+                  <Text c="dimmed">{membership.description}</Text>
+                  <Text>
+                    <Text span size="32px">
+                      ${membership.price}
+                    </Text>{" "}
+                    / per month
+                  </Text>
+
+                  <Divider my="sm" />
+
+                  {membership.perks.map((perk, idx) => (
+                    <Text key={idx}>
+                      {perk.icon} {perk.text}
                     </Text>
-
-                    <Divider my="sm" />
-
-                    {membership.perks.map((perk, idx) => (
-                      <Text key={idx}>
-                        {perk.icon} {perk.text}
-                      </Text>
-                    ))}
-                  </Card.Section>
-                </Card>
-              </Grid.Col>
+                  ))}
+                </Card.Section>
+              </Card>
             ))}
-          </Grid>
+          </SimpleGrid>
         </Stack>
       </Container>
     </section>

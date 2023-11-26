@@ -17,6 +17,7 @@ import {
 } from "@mantine/core";
 import { useHeadroom } from "@mantine/hooks";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { ROUTES } from "~/features/data/routes";
@@ -80,10 +81,22 @@ export default function HomePage() {
       return <Loader color="blue" />;
     }
     if (auth.isSignedIn && organization.organization) {
-      return <Button>Dashboard</Button>;
+      const userMembership =
+        organizationList.userMemberships.data?.find(Boolean);
+      const org = organization.organization ?? userMembership?.organization;
+
+      return (
+        <Button component={Link} href={ROUTES.WORKSPACE.path(org.id)}>
+          Dashboard
+        </Button>
+      );
     }
     if (auth.isSignedIn && !organization.organization) {
-      return <Button>Create workspace</Button>;
+      return (
+        <Button onClick={() => clerk.redirectToCreateOrganization()}>
+          Create workspace
+        </Button>
+      );
     }
     return (
       <>

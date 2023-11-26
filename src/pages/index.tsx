@@ -4,6 +4,7 @@ import {
   useAuth,
   useOrganization,
   useClerk,
+  useOrganizationList,
 } from "@clerk/nextjs";
 import {
   AppShell,
@@ -17,7 +18,7 @@ import {
 import { useHeadroom } from "@mantine/hooks";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { ROUTES } from "~/features/data/routes";
 import {
   ContactSection,
@@ -33,22 +34,45 @@ export default function HomePage() {
   const clerk = useClerk();
   const auth = useAuth();
   const organization = useOrganization();
+  const organizationList = useOrganizationList({
+    userMemberships: {
+      infinite: true,
+    },
+  });
   const pinned = useHeadroom({ fixedAt: 120 });
 
+  const setActiveOrganization = useCallback(
+    async (orgId: string) => {
+      await organizationList.setActive?.({ organization: orgId });
+    },
+    [organizationList]
+  );
+
   useEffect(() => {
-    if (!auth.isLoaded || !organization.isLoaded) return;
+    if (!auth.isLoaded || !organization.isLoaded || !organizationList.isLoaded)
+      return;
     if (!auth.isSignedIn) return;
-    if (organization.organization?.id) {
-      return router.push(ROUTES.WORKSPACE.path(organization.organization.id));
+    if (organizationList.userMemberships.isLoading) return;
+
+    const userMembership = organizationList.userMemberships.data?.find(Boolean);
+    const org = organization.organization ?? userMembership?.organization;
+
+    if (org?.id) {
+      setActiveOrganization(org.id).catch(console.error);
+      return router.push(ROUTES.WORKSPACE.path(org.id));
     }
     return clerk.redirectToCreateOrganization();
   }, [
     auth.isLoaded,
     organization.isLoaded,
+    organizationList.isLoaded,
+    organizationList.userMemberships.isLoading,
     auth.isSignedIn,
-    organization.organization?.id,
+    organization.organization,
     clerk,
     router,
+    organizationList.userMemberships.data,
+    setActiveOrganization,
   ]);
 
   function renderAuthActions() {

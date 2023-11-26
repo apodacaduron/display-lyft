@@ -9,7 +9,6 @@ import { MantineProvider } from "@mantine/core";
 import type { NextPage } from "next";
 import type { Session } from "@clerk/nextjs/server";
 import { DM_Sans } from "next/font/google";
-import { dark } from "@clerk/themes";
 import { mantineTheme } from "~/features/data/mantineTheme";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
@@ -31,15 +30,8 @@ function MyApp({
 
   return (
     <div className={dmSans.className}>
-      <MantineProvider theme={mantineTheme} defaultColorScheme="dark">
-        <ClerkProvider
-          appearance={{
-            baseTheme: dark,
-            signIn: { baseTheme: dark },
-            signUp: { baseTheme: dark },
-          }}
-          {...pageProps}
-        >
+      <MantineProvider theme={mantineTheme} defaultColorScheme="light">
+        <ClerkProvider {...pageProps}>
           {getLayout(<Component {...pageProps} />)}
         </ClerkProvider>
       </MantineProvider>
